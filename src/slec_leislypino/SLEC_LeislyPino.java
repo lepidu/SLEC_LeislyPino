@@ -1,12 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * System of Linear Equations Calculator (SLEC)
+ * Leisly Pino 2020303
+ * Object Oriented Constructs, Linear Algebra & Databases: Continuous Assessment
  */
 package slec_leislypino;
 
 /**
- *
  * @author Leisly Pino
  */
 public class SLEC_LeislyPino {
