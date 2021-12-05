@@ -15,7 +15,7 @@ public class SLEC_LeislyPino {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        menu.main(args);
+        Form_menu.main(args);
         
     }
     

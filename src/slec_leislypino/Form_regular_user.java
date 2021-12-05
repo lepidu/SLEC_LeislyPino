@@ -9,13 +9,14 @@ package slec_leislypino;
  *
  * @author Leisly Pino
  */
-public class regular_user extends javax.swing.JFrame {
+public class Form_regular_user extends javax.swing.JFrame {
 
     /**
      * Creates new form regular_user
      */
-    public regular_user() {
+    public Form_regular_user() {
         initComponents();
+        setLocationRelativeTo(null); //Position in the center of the screen
     }
 
     /**
@@ -37,10 +38,25 @@ public class regular_user extends javax.swing.JFrame {
         jLabel1.setText("REGULAR USER");
 
         bLoginUser.setText("Login");
+        bLoginUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLoginUserActionPerformed(evt);
+            }
+        });
 
         bSingUser.setText("Sing up");
+        bSingUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSingUserActionPerformed(evt);
+            }
+        });
 
         bBackUser.setText("Back");
+        bBackUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBackUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,6 +91,24 @@ public class regular_user extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bBackUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackUserActionPerformed
+        Form_menu window = new Form_menu();
+        window.setVisible(true); //call the Form Menu
+        this.dispose(); //Close this Form
+    }//GEN-LAST:event_bBackUserActionPerformed
+
+    private void bLoginUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginUserActionPerformed
+        Form_login_user window = new Form_login_user(); 
+        window.setVisible(true); //call the Form Login User
+        this.dispose(); //Close this Form
+    }//GEN-LAST:event_bLoginUserActionPerformed
+
+    private void bSingUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSingUserActionPerformed
+        Form_new_user window = new Form_new_user(); 
+        window.setVisible(true); //call the Form New User
+        this.dispose(); //Close this Form
+    }//GEN-LAST:event_bSingUserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -92,20 +126,21 @@ public class regular_user extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_regular_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new regular_user().setVisible(true);
+                new Form_regular_user().setVisible(true);
             }
         });
     }

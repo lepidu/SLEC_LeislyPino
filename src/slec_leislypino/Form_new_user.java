@@ -9,13 +9,14 @@ package slec_leislypino;
  *
  * @author Leisly Pino
  */
-public class new_user extends javax.swing.JFrame {
+public class Form_new_user extends javax.swing.JFrame {
 
     /**
      * Creates new form new_user
      */
-    public new_user() {
+    public Form_new_user() {
         initComponents();
+        setLocationRelativeTo(null); //Position in the center of the screen
     }
 
     /**
@@ -56,6 +57,11 @@ public class new_user extends javax.swing.JFrame {
         bSaveNU.setText("Save");
 
         bBackNU.setText("Back");
+        bBackNU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBackNUActionPerformed(evt);
+            }
+        });
 
         txtSurnameNU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +160,12 @@ public class new_user extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailNUActionPerformed
 
+    private void bBackNUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackNUActionPerformed
+        Form_regular_user window = new Form_regular_user(); 
+        window.setVisible(true); //call the Form Regular User
+        this.dispose(); //Close this Form
+    }//GEN-LAST:event_bBackNUActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,20 +183,21 @@ public class new_user extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_new_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new new_user().setVisible(true);
+                new Form_new_user().setVisible(true);
             }
         });
     }

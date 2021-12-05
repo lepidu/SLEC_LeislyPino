@@ -9,13 +9,14 @@ package slec_leislypino;
  *
  * @author Leisly Pino
  */
-public class menu extends javax.swing.JFrame {
+public class Form_menu extends javax.swing.JFrame {
 
     /**
      * Creates new form menu
      */
-    public menu() {
+    public Form_menu() {
         initComponents();
+        setLocationRelativeTo(null); //Position in the center of the screen
     }
 
     /**
@@ -49,6 +50,11 @@ public class menu extends javax.swing.JFrame {
         bUser.setBackground(new java.awt.Color(0, 0, 0));
         bUser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         bUser.setText("Regular User");
+        bUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,8 +88,16 @@ public class menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdminActionPerformed
-        // TODO add your handling code here:
+        Form_admin window = new Form_admin(); 
+        window.setVisible(true); //call the Form Admin
+        this.dispose(); //Close this Form
     }//GEN-LAST:event_bAdminActionPerformed
+
+    private void bUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUserActionPerformed
+        Form_regular_user window = new Form_regular_user();
+        window.setVisible(true); //call the Form Regular User
+        this.dispose(); //Close this Form
+    }//GEN-LAST:event_bUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,20 +116,21 @@ public class menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Form_menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new menu().setVisible(true);
+                new Form_menu().setVisible(true);
             }
         });
     }
