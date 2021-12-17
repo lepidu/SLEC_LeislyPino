@@ -5,6 +5,17 @@
  */
 package slec_leislypino;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.sql.Connection;
+import java.sql.Statement;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Leisly Pino
@@ -12,11 +23,90 @@ package slec_leislypino;
 public class Form_admin extends javax.swing.JFrame {
 
     /**
-     * Creates new form admin
+     * Creates new form Form_admin
      */
+    //Connection con =null;
+    //Statement stmt =null;
+    //String titles [] = {"id", "Name", "Surname", "Email", "Phone", "Address", "City", "Password"};
+    //String rows [] = new String [8];
+    //DefaultTableModel model;
+    
+    Change_profile change_admin = new Change_profile();
+    Review review = new Review();
+    Remove_user remove = new Remove_user();
+    List_users list = new List_users();
+
+    CardLayout view;
+
     public Form_admin() {
         initComponents();
+        this.setTitle("ADMIN");
+        this.setResizable(false);
         setLocationRelativeTo(null); //Position in the center of the screen
+        ImageIcon icon = new ImageIcon("");
+        this.setIconImage(icon.getImage());
+
+        view = (CardLayout) Main_view.getLayout();
+
+        /*     
+                try {
+            
+            String url = "jdbc:mysql://localhost:3306/tutorialproyecto";
+            String usuario = "root";
+            String contraseña = "contraseña";  
+            
+               Class.forName("com.mysql.jdbc.Driver").newInstance();
+               con = DriverManager.getConnection(url,usuario,contraseña);
+               if (con!= null)
+                   System.out.println("Se ha establecido una conexion a la base de datos"+"\n"+url);
+               
+               stmt = con.createStatement();
+               ResultSet rs = stmt.executeQuery("select* from usuarios");
+               
+               modelo = new DefaultTableModel(null,titulos);
+            
+               while(rs.next()) {
+                   
+                   fila[0] = rs.getString("id");
+                   fila[1] = rs.getString("nombre");
+                   fila[2] = rs.getString("domicilio");
+                   fila[3] = rs.getString("telefono");
+                   fila[4] = rs.getString("nick");
+                   fila[5] = rs.getString("password");
+                   fila[6] = rs.getString("tipousuario");
+                   
+                   modelo.addRow(fila);     
+               }
+               tabla_usuarios.setModel(modelo);
+                TableColumn ci = tabla_usuarios.getColumn("id");
+                ci.setMaxWidth(25);
+                TableColumn cn = tabla_usuarios.getColumn("Nombre");
+                cn.setMaxWidth(165);
+                TableColumn cd = tabla_usuarios.getColumn("Domicilio");
+                cd.setMaxWidth(160);
+                TableColumn ct = tabla_usuarios.getColumn("Telefono");
+                ct.setMaxWidth(90);
+                TableColumn cnick = tabla_usuarios.getColumn("Nickname");
+                cnick.setMaxWidth(72);
+                TableColumn cp = tabla_usuarios.getColumn("Password");
+                cp.setMaxWidth(72);
+                TableColumn ctipo = tabla_usuarios.getColumn("Tipo usuario");
+                ctipo.setMaxWidth(95);
+               
+        }
+        catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null,"Error al extraer los datos de la tabla");
+        }
+
+
+// btn consultar  instanciar un objeto de la clase consultaUsuarios
+
+       this.dispose();
+        consultaUsuarios cu = new consultaUsuarios();
+        cu.setLocationRelativeTo(null);
+        cu.setVisible(true);
+         */
     }
 
     /**
@@ -28,84 +118,273 @@ public class Form_admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        Main_view = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtUserAdmin = new javax.swing.JTextField();
-        txtPasswordAdmin = new javax.swing.JPasswordField();
-        bLoginAdmin = new javax.swing.JButton();
-        bBackAdmin = new javax.swing.JButton();
+        btn_exit = new javax.swing.JToggleButton();
+        btn_change = new javax.swing.JToggleButton();
+        btn_list = new javax.swing.JToggleButton();
+        btn_review = new javax.swing.JToggleButton();
+        btn_remove = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("ADMIN");
+        jPanel1.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel2.setText("Username:");
+        Main_view.setBackground(new java.awt.Color(0, 51, 153));
 
-        jLabel3.setText("Password:");
+        javax.swing.GroupLayout Main_viewLayout = new javax.swing.GroupLayout(Main_view);
+        Main_view.setLayout(Main_viewLayout);
+        Main_viewLayout.setHorizontalGroup(
+            Main_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        Main_viewLayout.setVerticalGroup(
+            Main_viewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-        bLoginAdmin.setText("Login");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
-        bBackAdmin.setText("Back");
-        bBackAdmin.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setText("MENU");
+
+        btn_exit.setBackground(new java.awt.Color(204, 204, 204));
+        btn_exit.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        btn_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        btn_exit.setText("Log out");
+        btn_exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_exit.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_exit.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btn_exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bBackAdminActionPerformed(evt);
+                btn_exitActionPerformed(evt);
             }
         });
+
+        btn_change.setBackground(new java.awt.Color(204, 204, 204));
+        btn_change.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        btn_change.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edituser.png"))); // NOI18N
+        btn_change.setText("Change Profile");
+        btn_change.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_change.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_change.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btn_change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_changeActionPerformed(evt);
+            }
+        });
+
+        btn_list.setBackground(new java.awt.Color(204, 204, 204));
+        btn_list.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        btn_list.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/listuser.png"))); // NOI18N
+        btn_list.setText("List Users");
+        btn_list.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_list.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_list.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btn_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listActionPerformed(evt);
+            }
+        });
+
+        btn_review.setBackground(new java.awt.Color(204, 204, 204));
+        btn_review.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        btn_review.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/informationuser.png"))); // NOI18N
+        btn_review.setText("Review Operations");
+        btn_review.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btn_review.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_review.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_review.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btn_review.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_reviewActionPerformed(evt);
+            }
+        });
+
+        btn_remove.setBackground(new java.awt.Color(204, 204, 204));
+        btn_remove.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        btn_remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/removeuser.png"))); // NOI18N
+        btn_remove.setText("Remove Users");
+        btn_remove.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_remove.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_remove.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        btn_remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_removeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btn_exit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_change, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_review, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_remove, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_list, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_change, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btn_review)
+                .addGap(0, 0, 0)
+                .addComponent(btn_remove)
+                .addGap(0, 0, 0)
+                .addComponent(btn_exit)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_list))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Main_view, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(Main_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUserAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                            .addComponent(txtPasswordAdmin)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(bLoginAdmin)
-                        .addGap(65, 65, 65)
-                        .addComponent(bBackAdmin)))
-                .addContainerGap(173, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtUserAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPasswordAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bLoginAdmin)
-                    .addComponent(bBackAdmin))
-                .addContainerGap(80, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bBackAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackAdminActionPerformed
-        Form_menu window = new Form_menu();
-        window.setVisible(true); //call the Form Menu
+    private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
+        // TODO add your handling code here:
+        Form_login window = new Form_login();
+        window.setVisible(true); //call the Form Regular User
         this.dispose(); //Close this Form
-    }//GEN-LAST:event_bBackAdminActionPerformed
+    }//GEN-LAST:event_btn_exitActionPerformed
+
+    private void btn_changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_changeActionPerformed
+        // TODO add your handling code here:
+        if (btn_change.isSelected()) {
+            Main_view.add(change_admin, "change");
+            view.show(Main_view, "change");
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+
+            btn_list.setEnabled(false);
+            btn_remove.setEnabled(false);
+            btn_review.setEnabled(false);
+            btn_change.setBackground(Color.WHITE);
+
+        } else {
+            Main_view.removeAll();
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+            btn_list.setEnabled(true);
+            btn_remove.setEnabled(true);
+            btn_review.setEnabled(true);
+            btn_change.setBackground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_btn_changeActionPerformed
+
+    private void btn_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listActionPerformed
+        // TODO add your handling code here:
+        if (btn_list.isSelected()) {
+            Main_view.add(list, "list");
+            view.show(Main_view, "list");
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+            btn_change.setEnabled(false);
+            btn_remove.setEnabled(false);
+            btn_review.setEnabled(false);
+            btn_list.setBackground(Color.WHITE);
+
+        } else {
+            Main_view.removeAll();
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+            btn_change.setEnabled(true);
+            btn_remove.setEnabled(true);
+            btn_review.setEnabled(true);
+            btn_list.setBackground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_btn_listActionPerformed
+
+    private void btn_reviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reviewActionPerformed
+        // TODO add your handling code here:
+        if (btn_review.isSelected()) {
+            Main_view.add(review, "review");
+            view.show(Main_view, "review");
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+            btn_list.setEnabled(false);
+            btn_remove.setEnabled(false);
+            btn_change.setEnabled(false);
+            btn_review.setBackground(Color.WHITE);
+
+        } else {
+            Main_view.removeAll();
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+            btn_list.setEnabled(true);
+            btn_remove.setEnabled(true);
+            btn_change.setEnabled(true);
+            btn_review.setBackground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_btn_reviewActionPerformed
+
+    private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
+        // TODO add your handling code here:
+        if (btn_remove.isSelected()) {
+            Main_view.add(remove, "remove");
+            view.show(Main_view, "remove");
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+            btn_list.setEnabled(false);
+            btn_change.setEnabled(false);
+            btn_review.setEnabled(false);
+            btn_remove.setBackground(Color.WHITE);
+
+        } else {
+            Main_view.removeAll();
+            SwingUtilities.updateComponentTreeUI(this);
+            this.repaint();
+            btn_list.setEnabled(true);
+            btn_change.setEnabled(true);
+            btn_review.setEnabled(true);
+            btn_remove.setBackground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_btn_removeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,6 +413,8 @@ public class Form_admin extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -144,12 +425,16 @@ public class Form_admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bBackAdmin;
-    private javax.swing.JButton bLoginAdmin;
+    private javax.swing.JPanel Main_view;
+    private javax.swing.JToggleButton btn_change;
+    private javax.swing.JToggleButton btn_exit;
+    private javax.swing.JToggleButton btn_list;
+    private javax.swing.JToggleButton btn_remove;
+    private javax.swing.JToggleButton btn_review;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField txtPasswordAdmin;
-    private javax.swing.JTextField txtUserAdmin;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
+
+

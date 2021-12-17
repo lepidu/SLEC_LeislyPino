@@ -5,6 +5,11 @@
  */
 package slec_leislypino;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Leisly Pino
@@ -14,7 +19,12 @@ public class Form_menu extends javax.swing.JFrame {
     /**
      * Creates new form menu
      */
+    
+    Background background = new Background();
+    
+    
     public Form_menu() {
+        this.setContentPane(background);
         initComponents();
         setLocationRelativeTo(null); //Position in the center of the screen
     }
@@ -28,31 +38,29 @@ public class Form_menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        bAdmin = new javax.swing.JButton();
-        bUser = new javax.swing.JButton();
+        bLogin = new javax.swing.JButton();
+        bNewUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setText("MENU");
-
-        bAdmin.setBackground(new java.awt.Color(0, 0, 0));
-        bAdmin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        bAdmin.setText("Admin");
-        bAdmin.addActionListener(new java.awt.event.ActionListener() {
+        bLogin.setBackground(new java.awt.Color(255, 255, 255));
+        bLogin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bLogin.setText("login");
+        bLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11))); // NOI18N
+        bLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAdminActionPerformed(evt);
+                bLoginActionPerformed(evt);
             }
         });
 
-        bUser.setBackground(new java.awt.Color(0, 0, 0));
-        bUser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        bUser.setText("Regular User");
-        bUser.addActionListener(new java.awt.event.ActionListener() {
+        bNewUser.setBackground(new java.awt.Color(255, 255, 204));
+        bNewUser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bNewUser.setText("singup");
+        bNewUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bUserActionPerformed(evt);
+                bNewUserActionPerformed(evt);
             }
         });
 
@@ -61,43 +69,36 @@ public class Form_menu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bNewUser, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                    .addComponent(bLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(562, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGap(46, 46, 46)
-                .addComponent(bAdmin)
-                .addGap(55, 55, 55)
-                .addComponent(bUser)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addGap(0, 184, Short.MAX_VALUE)
+                .addComponent(bNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdminActionPerformed
-        Form_admin window = new Form_admin(); 
+    private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
+        Form_login window = new Form_login(); 
         window.setVisible(true); //call the Form Admin
         this.dispose(); //Close this Form
-    }//GEN-LAST:event_bAdminActionPerformed
+    }//GEN-LAST:event_bLoginActionPerformed
 
-    private void bUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUserActionPerformed
-        Form_regular_user window = new Form_regular_user();
+    private void bNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewUserActionPerformed
+        Form_new_user window = new Form_new_user();
         window.setVisible(true); //call the Form Regular User
         this.dispose(); //Close this Form
-    }//GEN-LAST:event_bUserActionPerformed
+    }//GEN-LAST:event_bNewUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,8 +137,21 @@ public class Form_menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bAdmin;
-    private javax.swing.JButton bUser;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton bLogin;
+    private javax.swing.JButton bNewUser;
     // End of variables declaration//GEN-END:variables
 }
+
+class Background extends JPanel
+{
+private Image img;
+@Override
+public void paint(Graphics g){
+    img =new ImageIcon(getClass().getResource("/images/CCT_menu.jpg")).getImage();
+    g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+    setOpaque(false);
+    super.paint(g);
+}
+
+}
+
