@@ -94,7 +94,7 @@ public class Review_user extends javax.swing.JPanel {
         btn_save.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_save.setText("SAVE");
 
-        table_activity.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        table_activity.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         table_activity.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
