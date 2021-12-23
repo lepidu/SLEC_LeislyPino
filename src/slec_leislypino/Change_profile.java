@@ -24,7 +24,6 @@ public class Change_profile extends javax.swing.JPanel {
 
     public void erase() {
 
-        txt_address.setText("");
         txt_name.setText("");
         txt_password.setText("");
         txt_surname.setText("");
@@ -85,9 +84,8 @@ public class Change_profile extends javax.swing.JPanel {
     }
 
     public void check_data() {
-        if (txt_address.getText().isEmpty() || txt_name.getText().isEmpty()
-                || txt_password.getText().isEmpty() || txt_phone.getText().isEmpty()
-                || txt_surname.getText().isEmpty()) {
+        if (txt_name.getText().isEmpty() || txt_password.getText().isEmpty() || 
+            txt_phone.getText().isEmpty() || txt_surname.getText().isEmpty()) {
 
             btn_update.setEnabled(false);
         } else {
@@ -110,12 +108,10 @@ public class Change_profile extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txt_surname = new javax.swing.JTextField();
         txt_name = new javax.swing.JTextField();
         txt_phone = new javax.swing.JTextField();
-        txt_address = new javax.swing.JTextField();
         txt_password = new javax.swing.JTextField();
         btn_update = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
@@ -139,9 +135,6 @@ public class Change_profile extends javax.swing.JPanel {
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel13.setText("Phone:");
-
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel14.setText("Address:");
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel16.setText("Password:");
@@ -175,14 +168,6 @@ public class Change_profile extends javax.swing.JPanel {
             }
         });
 
-        txt_address.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_address.setToolTipText("");
-        txt_address.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_addressKeyReleased(evt);
-            }
-        });
-
         txt_password.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         txt_password.setToolTipText("");
         txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -204,57 +189,48 @@ public class Change_profile extends javax.swing.JPanel {
         pnl_change_dataLayout.setHorizontalGroup(
             pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_change_dataLayout.createSequentialGroup()
-                .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnl_change_dataLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel13)
-                        .addGap(34, 34, 34)
-                        .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(pnl_change_dataLayout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addGap(18, 18, 18)
-                            .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnl_change_dataLayout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addGap(38, 38, 38)
-                            .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnl_change_dataLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(38, 38, 38)
+                        .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_update)
-                    .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(pnl_change_dataLayout.createSequentialGroup()
-                            .addComponent(jLabel16)
-                            .addGap(28, 28, 28)
-                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(pnl_change_dataLayout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addGap(35, 35, 35)
-                            .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_change_dataLayout.createSequentialGroup()
+                        .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_update)
+                            .addGroup(pnl_change_dataLayout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(34, 34, 34)
+                                .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_change_dataLayout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
         pnl_change_dataLayout.setVerticalGroup(
             pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_change_dataLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13)
-                        .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl_change_dataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel16)
                         .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
+                .addGap(98, 98, 98)
                 .addComponent(btn_update)
                 .addContainerGap())
         );
@@ -345,10 +321,6 @@ public class Change_profile extends javax.swing.JPanel {
         check_data();
     }//GEN-LAST:event_txt_phoneKeyReleased
 
-    private void txt_addressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_addressKeyReleased
-        check_data();
-    }//GEN-LAST:event_txt_addressKeyReleased
-
     private void txt_passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyReleased
         check_data();
     }//GEN-LAST:event_txt_passwordKeyReleased
@@ -360,13 +332,11 @@ public class Change_profile extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_search;
     private javax.swing.JPanel pnl_change_data;
-    private javax.swing.JTextField txt_address;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_name;
     private javax.swing.JTextField txt_password;

@@ -1,9 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import mysql.ConnectorDB;
 
 /**
  *
@@ -16,8 +20,48 @@ public class Review_user extends javax.swing.JPanel {
      */
     public Review_user() {
         initComponents();
+        searchUsers();
     }
 
+    DefaultTableModel table;
+    String columns[] = {"Name", "Surname", "Email", "Phone", "Address", "City", "Password"};
+    String rows[] = new String[7];
+    Connection con;
+    PreparedStatement sentence;
+    ResultSet result;
+
+    // Make the connection with the database and return the existing list of users
+    public void searchUsers() {
+        table = new DefaultTableModel(null, columns);
+        try {
+            con = ConnectorDB.connector();
+            String check_table = "SELECT * FROM users";
+            sentence = con.prepareStatement(check_table);
+            result = sentence.executeQuery();
+            while (result.next()) {
+                rows[0] = result.getString(1);
+                rows[1] = result.getString(2);
+                rows[2] = result.getString(3);
+                rows[3] = result.getString(4);
+                rows[4] = result.getString(5);
+                rows[5] = result.getString(6);
+                rows[6] = result.getString(7);
+                table.addRow(rows);
+            }
+            table_activity.setModel(table);
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(List_users.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error: " + ex);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +77,7 @@ public class Review_user extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         btn_save = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_activity = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txt_email = new javax.swing.JTextField();
         lbl_email = new javax.swing.JLabel();
@@ -50,19 +94,19 @@ public class Review_user extends javax.swing.JPanel {
         btn_save.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_save.setText("SAVE");
 
-        jTable1.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_activity.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        table_activity.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_activity);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -184,8 +228,8 @@ public class Review_user extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_email;
+    private javax.swing.JTable table_activity;
     private javax.swing.JTextField txt_email;
     // End of variables declaration//GEN-END:variables
 }

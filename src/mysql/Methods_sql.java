@@ -264,7 +264,29 @@ public class Methods_sql {
         Connection connector = null;
         try {
             connector = ConnectorDB.connector();
-            String statement_search_user = ("SELECT email, password FROM users WHERE email = '" + email + "' && password = '" + password + "'");
+            String statement_search_user = ("SELECT email, password FROM users WHERE email = ? && password =  ?");
+            sentence = connector.prepareStatement(statement_search_user);
+            result = sentence.executeQuery();
+            if (result.next()) {
+                search_user = "User founded";
+
+            } else {
+                search_user = "User dosen't founded";
+            }
+
+            connector.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return search_user;
+    }
+    
+    public static String searchUserRegisAdmin(String email, String password) {
+        String search_user = null;
+        Connection connector = null;
+        try {
+            connector = ConnectorDB.connector();
+            String statement_search_user = ("SELECT email, password FROM admin WHERE email = ? && password = ?");
             sentence = connector.prepareStatement(statement_search_user);
             result = sentence.executeQuery();
             if (result.next()) {

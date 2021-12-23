@@ -132,6 +132,7 @@ public class Form_login extends javax.swing.JFrame {
         // the help of the searchUserRegis method existing in the 
         // Methods_sql class
         String search_user = methods.searchUserRegis(txt_email.getText(), txt_password.getText());
+        String search_admin = methods.searchUserRegisAdmin(txt_email.getText(), txt_password.getText());
         if (txt_email.getText().equals("CCT") && txt_password.getText().equals("Dublin")) {
             JOptionPane.showMessageDialog(null, "Welcome Admin");
             Form_admin window = new Form_admin();
@@ -143,7 +144,14 @@ public class Form_login extends javax.swing.JFrame {
             Form_user window = new Form_user();
             window.setVisible(true);
             this.dispose(); //Close this Form
-        } else {
+            
+        } else if (search_admin.equals("User founded")) {
+            JOptionPane.showMessageDialog(null, "Welcome Admin");
+            Form_user window = new Form_user();
+            window.setVisible(true);
+            this.dispose(); //Close this Form
+            
+        }else {
             JOptionPane.showMessageDialog(this, "User doesn't exits");
         }
     }//GEN-LAST:event_bLoginUserActionPerformed
