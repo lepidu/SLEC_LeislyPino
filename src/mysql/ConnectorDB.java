@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mysql;
 
 import com.mysql.jdbc.Connection;
@@ -10,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * This is the method of connecting with the database where everything that the
+ * user provides to the system will be saved.
  *
  * @author Leisly Pino
  */
@@ -29,7 +26,7 @@ public class ConnectorDB {
             System.out.println("Successful Connection");
         } catch (ClassNotFoundException | SQLException e) {
 
-            System.out.println("Error: "+e);
+            System.out.println("Error: " + e);
         }
         return con;
     }

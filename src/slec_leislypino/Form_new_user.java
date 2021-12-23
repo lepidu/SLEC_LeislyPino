@@ -4,15 +4,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import java.awt.*;
-import java.awt.event.*;
-import java.lang.Exception;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.*;
 import mysql.Methods_sql;
 
 /**
+ * User registry where it will be carried out with the methods established in
+ * the Methods_sql class
  *
  * @author Leisly Pino
  */
@@ -23,8 +19,7 @@ public class Form_new_user extends javax.swing.JFrame {
      */
     Background3 background = new Background3();
     Methods_sql methods = new Methods_sql();
-    
-    
+
     String name;
     String surname;
     String email;
@@ -36,11 +31,12 @@ public class Form_new_user extends javax.swing.JFrame {
     public Form_new_user() {
         this.setContentPane(background);
         initComponents();
-        setLocationRelativeTo(null); //Position in the center of the screen
+        setLocationRelativeTo(null); // Position in the center of the screen
 
     }
-    
-    public void clean (){
+
+    // Method that will clean the txt when saving the user
+    public void clean() {
         txt_address.setText("");
         txt_email.setText("");
         txt_name.setText("");
@@ -49,14 +45,18 @@ public class Form_new_user extends javax.swing.JFrame {
         txt_phone.setText("");
         cmb_city.setSelectedItem(0);
     }
-    public void validation(){
+
+    // It will check if the mail exists in the database
+    public void validation() {
         String search_name = methods.searchEmail(txt_email.getText().trim());
-        if(search_name.equals("Exist email")){
+        if (search_name.equals("Exist email")) {
             lbl_vemail.setText("Email is in the system");
-        } else{
+        } else {
             lbl_vemail.setText("Succeful email");
         }
     }
+
+    // It will check if the email is written correctly with the format of an email
     private void checkEmail() {
         lbl_cemail.setText((Validation.email(txt_email.getText().trim())) ? "" : "*invalid");
     }
@@ -92,7 +92,7 @@ public class Form_new_user extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("NEW USER");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -107,16 +107,16 @@ public class Form_new_user extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Password:");
 
-        bSaveNU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        bSaveNU.setText("Save");
+        bSaveNU.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bSaveNU.setText("SAVE");
         bSaveNU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSaveNUActionPerformed(evt);
             }
         });
 
-        bBackNU.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        bBackNU.setText("Back");
+        bBackNU.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bBackNU.setText("BACK");
         bBackNU.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bBackNUActionPerformed(evt);
@@ -199,36 +199,37 @@ public class Form_new_user extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(bSaveNU, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lbl_vemail, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(105, 105, 105)
-                                        .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bSaveNU))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bBackNU)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel2))
-                                            .addGap(51, 51, 51))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(70, 70, 70)))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txt_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbl_cemail, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bBackNU, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 125, Short.MAX_VALUE))
+                                    .addGap(105, 105, 105)
+                                    .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel2))
+                                        .addGap(51, 51, 51))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(70, 70, 70)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_email, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_cemail, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_vemail, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 120, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(154, 154, 154)
                 .addComponent(jLabel1)
@@ -241,16 +242,7 @@ public class Form_new_user extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(150, 150, 150)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bSaveNU)
-                            .addComponent(bBackNU)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,7 +250,15 @@ public class Form_new_user extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -276,21 +276,25 @@ public class Form_new_user extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(cmb_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addComponent(lbl_vemail, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(cmb_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_vemail, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bSaveNU)
+                            .addComponent(bBackNU))))
+                .addGap(45, 45, 45))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_surnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_surnameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txt_surnameActionPerformed
 
     private void txt_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_emailActionPerformed
-        // TODO add your handling code here:
+
 
     }//GEN-LAST:event_txt_emailActionPerformed
 
@@ -301,11 +305,11 @@ public class Form_new_user extends javax.swing.JFrame {
     }//GEN-LAST:event_bBackNUActionPerformed
 
     private void txt_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_addressActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txt_addressActionPerformed
 
     private void txt_nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nameKeyTyped
-        // TODO add your handling code here:
+        // It will only allow the user to type letters
         char c = evt.getKeyChar();
         if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
             evt.consume();
@@ -313,7 +317,7 @@ public class Form_new_user extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nameKeyTyped
 
     private void txt_surnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_surnameKeyTyped
-        // TODO add your handling code here:
+        // It will only allow the user to type letters
         char c = evt.getKeyChar();
         if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
             evt.consume();
@@ -321,7 +325,7 @@ public class Form_new_user extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_surnameKeyTyped
 
     private void txt_phoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_phoneKeyTyped
-        // TODO add your handling code here:
+        // It will only allow the user to type numbers
         char c = evt.getKeyChar();
         if ((c < '0' || c > '9')) {
             evt.consume();
@@ -329,9 +333,8 @@ public class Form_new_user extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_phoneKeyTyped
 
     private void bSaveNUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveNUActionPerformed
-        // TODO add your handling code here:
+        // The data will be saved and the Methods_sql class will be called
 
-        
         name = txt_name.getText();
         surname = txt_surname.getText();
         email = txt_email.getText();
@@ -339,12 +342,9 @@ public class Form_new_user extends javax.swing.JFrame {
         address = txt_address.getText();
         city = cmb_city.getSelectedItem().toString();
         password = txt_password.getText();
-        
-        
-        
+
         methods.save(name, surname, email, phone, address, city, password);
         clean();
-        
     }//GEN-LAST:event_bSaveNUActionPerformed
 
     private void txt_emailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_emailKeyReleased
@@ -353,7 +353,7 @@ public class Form_new_user extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_emailKeyReleased
 
     private void cmb_cityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_cityActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cmb_cityActionPerformed
 
     /**

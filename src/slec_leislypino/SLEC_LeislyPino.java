@@ -6,6 +6,9 @@
 package slec_leislypino;
 
 /**
+ * This is the main class where it calls our main form (Form_menu) to start
+ * executing.
+ *
  * @author Leisly Pino
  */
 public class SLEC_LeislyPino {
@@ -14,10 +17,7 @@ public class SLEC_LeislyPino {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        //Form_menu.main(args);
-        Form_user.main(args);
-        
+
+        Form_menu.main(args);
     }
-    
 }

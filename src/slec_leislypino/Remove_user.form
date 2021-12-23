@@ -144,24 +144,28 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="name" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="name" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="phone" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                          <Component id="phone_user" min="-2" pref="140" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="surname" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                          <Component id="surname_user" min="-2" pref="140" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Component id="name_user" min="-2" pref="140" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="phone" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                  <Component id="phone_user" min="-2" pref="140" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="surname" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="surname_user" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btn_delete" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -190,23 +194,23 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="name" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="name_user" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="address" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="address_user" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="name_user" alignment="1" max="32767" attributes="0"/>
+                              <Component id="address_user" alignment="1" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="surname" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="surname_user" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="surname_user" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="city" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="city_user" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="city_user" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="phone" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="phone_user" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="phone_user" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="password" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="password_user" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="password_user" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           <Component id="btn_delete" min="-2" max="-2" attributes="0"/>
@@ -301,7 +305,6 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="---"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="city_user">

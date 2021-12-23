@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
 
 import java.awt.Component;
@@ -17,6 +12,9 @@ import mysql.ConnectorDB;
 import mysql.Methods_sql;
 
 /**
+ * This Panel carries out the search for the email that the user enters to
+ * delete, where it looks for the email to be existing in the database and gives
+ * us the detailed information of the user
  *
  * @author Leisly Pino
  */
@@ -34,19 +32,19 @@ public class Remove_user extends javax.swing.JPanel {
     private static ResultSet result;
     Methods_sql methods = new Methods_sql();
 
-    public void block() {
+    public void block() { // Locks panel components
         for (Component c : pnl_delete_user.getComponents()) {
             c.setEnabled(false);
         }
     }
 
-    public void unlock() {
+    public void unlock() { // Unlock panel components
         for (Component c : pnl_delete_user.getComponents()) {
             c.setEnabled(true);
         }
     }
 
-    public void erase() {
+    public void erase() { // Clear the data and lock the panel
         name_user.setText("");
         surname_user.setText("");
         address_user.setText("");
@@ -56,15 +54,15 @@ public class Remove_user extends javax.swing.JPanel {
         block();
     }
 
-    public void erase2() {
-        if (txt_emailUser.getText().isEmpty()){
-        user_status.setText("");
-        erase();
+    public void erase2() { // Clean the email typed by the user
+        if (txt_emailUser.getText().isEmpty()) {
+            user_status.setText("");
+            erase();
         }
     }
-    
 
-    public void searchUser(String email){
+    // Search for the email entered in the database to give the user's results
+    public void searchUser(String email) {
         try {
             con = ConnectorDB.connector();
             String search_email = "SELECT * FROM users WHERE email = ? ";
@@ -85,7 +83,7 @@ public class Remove_user extends javax.swing.JPanel {
                 user_status.setText("Non-existent user in the System");
                 block();
                 erase();
-            } 
+            }
             con.close();
         } catch (SQLException e) {
             System.out.println("Error: " + e);
@@ -100,25 +98,21 @@ public class Remove_user extends javax.swing.JPanel {
         }
         erase2();
     }
-    
-    public void verifyDeletion (){
+
+    public void verifyDeletion() { // Ask for the user's confirmation
         int question;
-        question=JOptionPane.showConfirmDialog(null, "Are you sure to delete the"
+        question = JOptionPane.showConfirmDialog(null, "Are you sure to delete the"
                 + " user?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (question == 0){ // 0 is the option yes in the Confim Dialog
+        if (question == 0) { // 0 is the option yes in the Confim Dialog
             methods.deleteUser(txt_emailUser.getText());
             txt_emailUser.setText("");
             erase2();
             //block(); //check if is neccesary put this method
-        } else if (question == 1){
+        } else if (question == 1) {
             // 1 is the option no 2 is cancelar       
-    }
+        }
     }
 
-    //public void checkEmail(){
-        
-        //Validation.email(email.getText());
-    //}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,7 +185,6 @@ public class Remove_user extends javax.swing.JPanel {
         surname_user.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         address_user.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        address_user.setText("---");
 
         city_user.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -203,20 +196,22 @@ public class Remove_user extends javax.swing.JPanel {
             pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_delete_userLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(name)
+                .addGroup(pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnl_delete_userLayout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(name_user, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(name)
+                            .addGroup(pnl_delete_userLayout.createSequentialGroup()
+                                .addComponent(phone)
+                                .addGap(39, 39, 39)
+                                .addComponent(phone_user, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnl_delete_userLayout.createSequentialGroup()
+                                .addComponent(surname)
+                                .addGap(22, 22, 22)
+                                .addComponent(surname_user, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(20, 20, 20))
                     .addGroup(pnl_delete_userLayout.createSequentialGroup()
-                        .addComponent(phone)
-                        .addGap(39, 39, 39)
-                        .addComponent(phone_user, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_delete_userLayout.createSequentialGroup()
-                        .addComponent(surname)
-                        .addGap(22, 22, 22)
-                        .addComponent(surname_user, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
+                        .addComponent(name_user, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)))
                 .addGroup(pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_delete)
                     .addGroup(pnl_delete_userLayout.createSequentialGroup()
@@ -239,21 +234,21 @@ public class Remove_user extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(name)
-                    .addComponent(name_user)
                     .addComponent(address)
-                    .addComponent(address_user))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(name_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(address_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
                 .addGroup(pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(surname)
-                    .addComponent(surname_user)
+                    .addComponent(surname_user, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(city)
-                    .addComponent(city_user))
+                    .addComponent(city_user, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(pnl_delete_userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phone)
-                    .addComponent(phone_user)
+                    .addComponent(phone_user, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password)
-                    .addComponent(password_user))
+                    .addComponent(password_user, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addComponent(btn_delete)
                 .addGap(22, 22, 22))

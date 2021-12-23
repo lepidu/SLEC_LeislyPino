@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
 
 import java.awt.CardLayout;
-import java.awt.Container;
 import java.awt.Color;
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
-
 /**
+ * The Form_admin is the menu where the administrator can modify, delete and
+ * search for users, where according to the selection of the button it will
+ * allow to display the corresponding panels and will block the buttons that are
+ * not in use.
  *
  * @author Leisly Pino
  */
@@ -21,6 +17,7 @@ public class Form_admin extends javax.swing.JFrame {
     /**
      * Creates new form Form_admin
      */
+    // Panels to link to buttons
     Change_profile change_admin = new Change_profile();
     List_users list = new List_users();
     Remove_user remove = new Remove_user();
@@ -31,72 +28,9 @@ public class Form_admin extends javax.swing.JFrame {
     public Form_admin() {
         initComponents();
         this.setTitle("ADMIN");
-        this.setResizable(false);
         setLocationRelativeTo(null); //Position in the center of the screen
-        ImageIcon icon = new ImageIcon("");
-        this.setIconImage(icon.getImage());
 
         view = (CardLayout) Main_view.getLayout();
-
-        /*     
-                try {
-            
-            String url = "jdbc:mysql://localhost:3306/tutorialproyecto";
-            String usuario = "root";
-            String contraseña = "contraseña";  
-            
-               Class.forName("com.mysql.jdbc.Driver").newInstance();
-               con = DriverManager.getConnection(url,usuario,contraseña);
-               if (con!= null)
-                   System.out.println("Se ha establecido una conexion a la base de datos"+"\n"+url);
-               
-               stmt = con.createStatement();
-               ResultSet rs = stmt.executeQuery("select* from usuarios");
-               
-               modelo = new DefaultTableModel(null,titulos);
-            
-               while(rs.next()) {
-                   
-                   fila[0] = rs.getString("id");
-                   fila[1] = rs.getString("nombre");
-                   fila[2] = rs.getString("domicilio");
-                   fila[3] = rs.getString("telefono");
-                   fila[4] = rs.getString("nick");
-                   fila[5] = rs.getString("password");
-                   fila[6] = rs.getString("tipousuario");
-                   
-                   modelo.addRow(fila);     
-               }
-               tabla_usuarios.setModel(modelo);
-                TableColumn ci = tabla_usuarios.getColumn("id");
-                ci.setMaxWidth(25);
-                TableColumn cn = tabla_usuarios.getColumn("Nombre");
-                cn.setMaxWidth(165);
-                TableColumn cd = tabla_usuarios.getColumn("Domicilio");
-                cd.setMaxWidth(160);
-                TableColumn ct = tabla_usuarios.getColumn("Telefono");
-                ct.setMaxWidth(90);
-                TableColumn cnick = tabla_usuarios.getColumn("Nickname");
-                cnick.setMaxWidth(72);
-                TableColumn cp = tabla_usuarios.getColumn("Password");
-                cp.setMaxWidth(72);
-                TableColumn ctipo = tabla_usuarios.getColumn("Tipo usuario");
-                ctipo.setMaxWidth(95);
-               
-        }
-        catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null,"Error al extraer los datos de la tabla");
-        }
-
-
-// btn consultar  instanciar un objeto de la clase consultaUsuarios
-
-       this.dispose();
-        consultaUsuarios cu = new consultaUsuarios();
-        cu.setLocationRelativeTo(null);
-        cu.setVisible(true);
-         */
     }
 
     /**
@@ -204,9 +138,6 @@ public class Form_admin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btn_exit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,24 +146,28 @@ public class Form_admin extends javax.swing.JFrame {
                             .addComponent(btn_remove, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_list, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_list, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_change, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(btn_review)
-                .addGap(5, 5, 5)
+                .addGap(26, 26, 26)
                 .addComponent(btn_remove)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_exit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addComponent(btn_list)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_exit)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -248,11 +183,14 @@ public class Form_admin extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Main_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Main_view, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -274,14 +212,14 @@ public class Form_admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
-        // TODO add your handling code here:
+
         Form_login window = new Form_login();
-        window.setVisible(true); //call the Form Regular User
-        this.dispose(); //Close this Form
+        window.setVisible(true); // Call the Form Login
+        this.dispose(); // Close this Form
     }//GEN-LAST:event_btn_exitActionPerformed
 
     private void btn_changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_changeActionPerformed
-        // TODO add your handling code here:
+        // Enabling the panel and locking the other buttons that were not selected
         if (btn_change.isSelected()) {
             Main_view.add(change_admin, "change");
             view.show(Main_view, "change");
@@ -305,7 +243,7 @@ public class Form_admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_changeActionPerformed
 
     private void btn_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listActionPerformed
-        // TODO add your handling code here:
+        // Enabling the panel and locking the other buttons that were not selected
         if (btn_list.isSelected()) {
             Main_view.add(list, "list");
             view.show(Main_view, "list");
@@ -328,7 +266,7 @@ public class Form_admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_listActionPerformed
 
     private void btn_reviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reviewActionPerformed
-        // TODO add your handling code here:
+        // Enabling the panel and locking the other buttons that were not selected
         if (btn_review.isSelected()) {
             Main_view.add(review, "review");
             view.show(Main_view, "review");
@@ -351,7 +289,7 @@ public class Form_admin extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_reviewActionPerformed
 
     private void btn_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeActionPerformed
-        // TODO add your handling code here:
+        // Enabling the panel and locking the other buttons that were not selected
         if (btn_remove.isSelected()) {
             Main_view.add(remove, "remove");
             view.show(Main_view, "remove");
@@ -426,5 +364,3 @@ public class Form_admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
-
-

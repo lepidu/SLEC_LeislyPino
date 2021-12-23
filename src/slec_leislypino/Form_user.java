@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
-
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.net.URL;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 /**
+ * The Form_user will provide the user with a menu where they can change their
+ * data and solve linear equations
  *
  * @author Leisly Pino
  */
@@ -22,25 +15,22 @@ public class Form_user extends javax.swing.JFrame {
     /**
      * Creates new form Form_user
      */
+    // Change_user form where users can update their data
     Change_user change_user = new Change_user();
+    // Linear_equations form where the user can solve linear equations
     Linear_equations equation = new Linear_equations();
-    
+
     CardLayout view;
-    
+
     public Form_user() {
         initComponents();
         this.setTitle("USER");
-        this.setResizable(false);
         setLocationRelativeTo(null); //Position in the center of the screen
 
+        // The form will change as the user selects
         view = (CardLayout) Main_view.getLayout();
     }
 
-    /*public void iconForm(){
-            URL url = getClass().getResource("/images/linear.png");
-            ImageIcon icon_form = new ImageIcon();
-            setIconImage(icon_form.getImage());
-        }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,12 +181,13 @@ public class Form_user extends javax.swing.JFrame {
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
         // TODO add your handling code here:
         Form_login window = new Form_login();
-        window.setVisible(true); //call the Form Regular User
-        this.dispose(); //Close this Form          
+        window.setVisible(true); // Call the Form Login
+        this.dispose(); // Close this Form          
     }//GEN-LAST:event_btn_exitActionPerformed
 
     private void btn_changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_changeActionPerformed
-        // TODO add your handling code here:
+        // Interaction with the change of menu, according to the user's 
+        // selection and disabling the buttons that are not in use
         if (btn_change.isSelected()) {
 
             Main_view.add(change_user, "change");
@@ -219,7 +210,8 @@ public class Form_user extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_changeActionPerformed
 
     private void btn_equationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_equationsActionPerformed
-        // TODO add your handling code here:
+        // Interaction with the change of menu, according to the user's 
+        // selection and disabling the buttons that are not in use
         if (btn_equations.isSelected()) {
             Main_view.add(equation, "equation");
             view.show(Main_view, "equation");

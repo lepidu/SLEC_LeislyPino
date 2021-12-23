@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
 
 import java.awt.Graphics;
@@ -11,6 +6,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
+ * This is the Menu where the user will be given the option to register in the
+ * system or start a session if it already exists, where our buttons will call
+ * the corresponding forms with the option that the user selects.
  *
  * @author Leisly Pino
  */
@@ -19,14 +17,12 @@ public class Form_menu extends javax.swing.JFrame {
     /**
      * Creates new form menu
      */
-    
     Background background = new Background();
-    
-    
+
     public Form_menu() {
-        this.setContentPane(background);
+        this.setContentPane(background); // Determines the background
         initComponents();
-        setLocationRelativeTo(null); //Position in the center of the screen
+        setLocationRelativeTo(null); // Position in the center of the screen
     }
 
     /**
@@ -47,7 +43,7 @@ public class Form_menu extends javax.swing.JFrame {
 
         bLogin.setBackground(new java.awt.Color(255, 255, 255));
         bLogin.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        bLogin.setText("login");
+        bLogin.setText("LOG IN");
         bLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 11))); // NOI18N
         bLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,9 +51,9 @@ public class Form_menu extends javax.swing.JFrame {
             }
         });
 
-        bNewUser.setBackground(new java.awt.Color(255, 255, 204));
+        bNewUser.setBackground(new java.awt.Color(255, 255, 255));
         bNewUser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        bNewUser.setText("singup");
+        bNewUser.setText("SIGN UP");
         bNewUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNewUserActionPerformed(evt);
@@ -78,8 +74,8 @@ public class Form_menu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 184, Short.MAX_VALUE)
-                .addComponent(bNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 179, Short.MAX_VALUE)
+                .addComponent(bNewUser, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(120, 120, 120))
@@ -89,15 +85,15 @@ public class Form_menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
-        Form_login window = new Form_login(); 
-        window.setVisible(true); //call the Form Admin
-        this.dispose(); //Close this Form
+        Form_login window = new Form_login();
+        window.setVisible(true); // Call the Form Login
+        this.dispose(); // Close this Form
     }//GEN-LAST:event_bLoginActionPerformed
 
     private void bNewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewUserActionPerformed
         Form_new_user window = new Form_new_user();
-        window.setVisible(true); //call the Form Regular User
-        this.dispose(); //Close this Form
+        window.setVisible(true); // Call the Form New User
+        this.dispose(); // Close this Form
     }//GEN-LAST:event_bNewUserActionPerformed
 
     /**
@@ -142,16 +138,16 @@ public class Form_menu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
-class Background extends JPanel
-{
-private Image img;
-@Override
-public void paint(Graphics g){
-    img =new ImageIcon(getClass().getResource("/images/CCT_menu.jpg")).getImage();
-    g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-    setOpaque(false);
-    super.paint(g);
-}
+class Background extends JPanel {
+
+    private Image img;
+
+    @Override
+    public void paint(Graphics g) {
+        img = new ImageIcon(getClass().getResource("/images/CCT_menu.jpg")).getImage();
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        setOpaque(false);
+        super.paint(g);
+    }
 
 }
-

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
 
 import java.sql.Connection;
@@ -15,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import mysql.ConnectorDB;
 
 /**
+ * This Panel will get the existing list of users and put the data in a table.
  *
  * @author Leisly Pino
  */
@@ -27,22 +23,23 @@ public class List_users extends javax.swing.JPanel {
         initComponents();
         searchUsers();
     }
-    
+
     DefaultTableModel table;
-    String columns [] = {"Name","Surname", "Email", "Phone", "Address", "City", "Password"};
-    String rows[]=new String [7];
+    String columns[] = {"Name", "Surname", "Email", "Phone", "Address", "City", "Password"};
+    String rows[] = new String[7];
     Connection con;
     PreparedStatement sentence;
     ResultSet result;
-    
-    public void searchUsers(){
+
+    // Make the connection with the database and return the existing list of users
+    public void searchUsers() {
         table = new DefaultTableModel(null, columns);
-        try{
+        try {
             con = ConnectorDB.connector();
             String check_table = "SELECT * FROM users";
             sentence = con.prepareStatement(check_table);
             result = sentence.executeQuery();
-            while(result.next()){
+            while (result.next()) {
                 rows[0] = result.getString(1);
                 rows[1] = result.getString(2);
                 rows[2] = result.getString(3);
@@ -54,18 +51,19 @@ public class List_users extends javax.swing.JPanel {
             }
             tbl_activity.setModel(table);
             con.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e);
-            
-        }finally{
+
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(List_users.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Error: " +ex);
+                System.out.println("Error: " + ex);
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mysql;
 
 import java.awt.HeadlessException;
@@ -13,9 +8,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static mysql.ConnectorDB.connector;
 
 /**
+ * This class contains all the methods that are performed according to the
+ * operations selected, in each of the methods it is established with the data
+ * obtained from the user towards the update in the database.
  *
  * @author Leisly Pino
  */
@@ -24,10 +21,7 @@ public class Methods_sql {
     private static Connection con;
     private static PreparedStatement sentence;
     private static ResultSet result;
-    private static String sql;
-    private static int num_result = 0;
 
-    //Method Save users
     public void save(String name, String surname, String email, String phone,
             String address, String city, String password) {
 
@@ -62,7 +56,7 @@ public class Methods_sql {
 
         }
     }
-    
+
     public void saveTwo(String x1, String y1, String r1, String x2,
             String y2, String r2, String x, String y) {
 
@@ -98,8 +92,9 @@ public class Methods_sql {
 
         }
     }
+
     public void saveThree(String x1, String y1, String z1, String r1, String x2,
-            String y2,  String z2, String r2, String x3, String y3, String z3, 
+            String y2, String z2, String r2, String x3, String y3, String z3,
             String r3, String x, String y, String z) {
 
         try {
@@ -142,11 +137,10 @@ public class Methods_sql {
         }
     }
 
-    //Login in the system using the database
     public static String searchEmail(String email) {
 
         String search_name = null;
-        
+
         try {
             con = ConnectorDB.connector();
             String data_search = "SELECT email FROM users WHERE email = ? ";
@@ -155,7 +149,7 @@ public class Methods_sql {
             result = sentence.executeQuery();
             if (result.next()) {
                 search_name = "Exist email";
-            }else{
+            } else {
                 search_name = "Is not avaible in the system email";
             }
             con.close();
@@ -163,7 +157,7 @@ public class Methods_sql {
 
             System.out.println("Error: " + e);
 
-        } finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
@@ -172,12 +166,41 @@ public class Methods_sql {
         }
         return search_name;
     }
-    
-    //ordenar estos parametro porque tengo que eliminar mi id
-    //mi id sera mi email ya que la declarare como mi nueva key
-    public void changeData(String name, String surname, String address, String phone, String password, String city, String email){
-        try{
-            con =ConnectorDB.connector();
+
+    public static String searchEmailAdmin(String email) {
+
+        String search_name = null;
+
+        try {
+            con = ConnectorDB.connector();
+            String data_search = "SELECT email FROM admin WHERE email = ? ";
+            sentence = con.prepareStatement(data_search);
+            sentence.setString(1, email);
+            result = sentence.executeQuery();
+            if (result.next()) {
+                search_name = "Exist email";
+            } else {
+                search_name = "Is not avaible in the system email";
+            }
+            con.close();
+        } catch (Exception e) {
+
+            System.out.println("Error: " + e);
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Methods_sql.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return search_name;
+    }
+
+    public void changeData(String name, String surname, String address,
+            String phone, String password, String city, String email) {
+        try {
+            con = ConnectorDB.connector();
             String search = "UPDATE users SET name = ?, surname = ?, address = ?, phone = ?, city = ?, password = ? WHERE email = ?";
             sentence = con.prepareStatement(search);
             sentence.setString(1, name);
@@ -187,20 +210,50 @@ public class Methods_sql {
             sentence.setString(5, city);
             sentence.setString(6, password);
             sentence.setString(7, email);
-            
+
             int i = sentence.executeUpdate();
-            if (i>0){
+            if (i > 0) {
                 JOptionPane.showMessageDialog(null, "Data change");
             } else {
                 JOptionPane.showMessageDialog(null, "Data not change");
             }
             con.close();
-        } catch  (HeadlessException | SQLException e){
+        } catch (HeadlessException | SQLException e) {
             System.out.println("Error: " + e);
-        } finally{
+        } finally {
             try {
                 con.close();
-            } catch (Exception e){
+            } catch (Exception e) {
+                System.out.println("Error: " + e);
+            }
+        }
+    }
+
+    public void changeDataAdmin(String name, String surname, String phone,
+            String password, String email) {
+        try {
+            con = ConnectorDB.connector();
+            String search = "UPDATE admin SET name = ?, surname = ?, phone = ?, password = ? WHERE email = ?";
+            sentence = con.prepareStatement(search);
+            sentence.setString(1, name);
+            sentence.setString(2, surname);
+            sentence.setString(3, email);
+            sentence.setString(4, password);
+            sentence.setString(5, phone);
+
+            int i = sentence.executeUpdate();
+            if (i > 0) {
+                JOptionPane.showMessageDialog(null, "Data change");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data not change");
+            }
+            con.close();
+        } catch (HeadlessException | SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                con.close();
+            } catch (Exception e) {
                 System.out.println("Error: " + e);
             }
         }
@@ -227,25 +280,24 @@ public class Methods_sql {
         }
         return search_user;
     }
-    
-    public void deleteUser(String email){
-        try{
+
+    public void deleteUser(String email) {
+        try {
             con = ConnectorDB.connector();
             String search_delete = "DELETE FROM users WHERE email = ?";
             sentence = con.prepareStatement(search_delete);
             sentence.setString(1, email);
             int row_delete = sentence.executeUpdate();
-            if (row_delete > 0){
+            if (row_delete > 0) {
                 JOptionPane.showMessageDialog(null, "Succefull delete");
-            } else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Unsuccefull delete");
             }
             con.close();
-        }catch(HeadlessException | SQLException e){
-            System.out.println("Error: " +e);
-            
-            
-        } finally{
+        } catch (HeadlessException | SQLException e) {
+            System.out.println("Error: " + e);
+
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
@@ -254,6 +306,5 @@ public class Methods_sql {
             }
         }
     }
-    
- 
+
 }

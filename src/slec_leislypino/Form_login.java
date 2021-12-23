@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
 
 import java.awt.Graphics;
@@ -22,14 +17,14 @@ public class Form_login extends javax.swing.JFrame {
      * Creates new form login_user
      */
     Background2 background = new Background2();
-    
+
     public Form_login() {
-        this.setContentPane(background);
+        this.setContentPane(background); // Panel background
         initComponents();
-        setLocationRelativeTo(null); //Position in the center of the screen
+        setLocationRelativeTo(null); // Position in the center of the screen
     }
-    
-    Methods_sql methods = new Methods_sql();
+    // Methods class, where are the different methods that will be carried out
+    Methods_sql methods = new Methods_sql(); 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,20 +45,29 @@ public class Form_login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("WELCOME");
 
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Username:");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Password:");
 
-        bLoginUser.setText("Login");
+        txt_email.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txt_password.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        bLoginUser.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bLoginUser.setText("LOG IN");
         bLoginUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bLoginUserActionPerformed(evt);
             }
         });
 
-        bBackUser.setText("Back");
+        bBackUser.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bBackUser.setText("BACK");
         bBackUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bBackUserActionPerformed(evt);
@@ -77,30 +81,29 @@ public class Form_login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jLabel1))
+                        .addGap(50, 50, 50)
+                        .addComponent(bLoginUser)
+                        .addGap(83, 83, 83)
+                        .addComponent(bBackUser))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(txt_email)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(bLoginUser)
-                        .addGap(83, 83, 83)
-                        .addComponent(bBackUser)))
-                .addContainerGap(455, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                .addComponent(txt_email)))))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,42 +115,37 @@ public class Form_login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bLoginUser)
                     .addComponent(bBackUser))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBackUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBackUserActionPerformed
-        Form_menu window = new Form_menu(); 
+        Form_menu window = new Form_menu();
         window.setVisible(true); //call the Form Regular User
         this.dispose(); //Close this Form
     }//GEN-LAST:event_bBackUserActionPerformed
 
     private void bLoginUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginUserActionPerformed
-        // TODO add your handling code here:
+        // Check if the data entered is correct and exists in the database with 
+        // the help of the searchUserRegis method existing in the 
+        // Methods_sql class
         String search_user = methods.searchUserRegis(txt_email.getText(), txt_password.getText());
-        if (txt_email.getText().equals("CCT") && txt_password.getText().equals("Dublin")){
+        if (txt_email.getText().equals("CCT") && txt_password.getText().equals("Dublin")) {
+            JOptionPane.showMessageDialog(null, "Welcome Admin");
             Form_admin window = new Form_admin();
-            //JOptionPane.showMessageDialog(window, "Welcome Admin");
-            
-            window.setVisible(true);
-            //this.dispose(); //Close this Form
-            
-        } else if (search_user.equals("User founded")){
-            JOptionPane.showMessageDialog(null, "Welcome \n");
-            Form_user window = new Form_user();
-            //String search_name = methods.searchEmail(txt_email.getText());
-            //int option; 
-            
-            
             window.setVisible(true);
             this.dispose(); //Close this Form
-        }else{
+
+        } else if (search_user.equals("User founded")) {
+            JOptionPane.showMessageDialog(null, "Welcome \n");
+            Form_user window = new Form_user();
+            window.setVisible(true);
+            this.dispose(); //Close this Form
+        } else {
             JOptionPane.showMessageDialog(this, "User doesn't exits");
         }
-                        
-        
     }//GEN-LAST:event_bLoginUserActionPerformed
 
     /**
@@ -198,15 +196,17 @@ public class Form_login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txt_password;
     // End of variables declaration//GEN-END:variables
 }
-class Background2 extends JPanel
-{
-private Image img;
-@Override
-public void paint(Graphics g){
-    img =new ImageIcon(getClass().getResource("/images/CCT_bg.jpg")).getImage();
-    g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-    setOpaque(false);
-    super.paint(g);
-}
+
+class Background2 extends JPanel {
+
+    private Image img;
+
+    @Override
+    public void paint(Graphics g) {
+        img = new ImageIcon(getClass().getResource("/images/CCT_bg.jpg")).getImage();
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        setOpaque(false);
+        super.paint(g);
+    }
 
 }
