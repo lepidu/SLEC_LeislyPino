@@ -5,9 +5,14 @@
  */
 package mysql;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import static mysql.ConnectorDB.connector;
 
 /**
@@ -15,91 +20,240 @@ import static mysql.ConnectorDB.connector;
  * @author Leisly Pino
  */
 public class Methods_sql {
-    
-    public static ConnectorDB link = new ConnectorDB();
-    
-    public static PreparedStatement ps;
-    public static ResultSet result;
-    public static String sql;
-    public static int num_result = 0;
-    
-    public int save(String id, String name, String surname, String email, String phone,
-            String address, String city, String password){
-        int result = 0;
-        Connection link  =null;
-        
-        String save_data =("INSERT INTO users (id, name, surname, email, phone, address, city, password) VALUES (?,?,?,?,?,?,?,?)");
-        
+
+    private static Connection con;
+    private static PreparedStatement sentence;
+    private static ResultSet result;
+    private static String sql;
+    private static int num_result = 0;
+
+    //Method Save users
+    public void save(String name, String surname, String email, String phone,
+            String address, String city, String password) {
+
         try {
-            link = ConnectorDB.connector();
-            ps = link.prepareStatement(save_data);
-            ps.setString(1, id);
-            ps.setString(2, name);
-            ps.setString(3, surname);
-            ps.setString(4, email);
-            ps.setString(5, phone);
-            ps.setString(6, address);
-            ps.setString(7, city);
-            ps.setString(8, password);
-            
-            result = ps.executeUpdate();
-            link.close();
+            con = ConnectorDB.connector();
+            String check = "INSERT INTO users (name, surname, email, phone, address, city, password) VALUES (?,?,?,?,?,?,?)";
+            sentence = con.prepareStatement(check);
+            sentence.setString(1, name);
+            sentence.setString(2, surname);
+            sentence.setString(3, email);
+            sentence.setString(4, phone);
+            sentence.setString(5, address);
+            sentence.setString(6, city);
+            sentence.setString(7, password);
+
+            int i = sentence.executeUpdate();
+            if (i > 0) {
+                JOptionPane.showMessageDialog(null, "Data saved");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error in to save data");
+            }
+            con.close();
+        } catch (HeadlessException | SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error: " + e);
+
+            }
+
         }
-        catch (Exception e){
-           System.out.println(e);
-        }
-        
-        return result;
-    
     }
     
-    //Login in the system using the database
-    
-    public static String searchName(String email){
-        
-        String search_name = null;
-        Connection connector = null;
+    public void saveTwo(String x1, String y1, String r1, String x2,
+            String y2, String r2, String x, String y) {
+
         try {
-            connector = ConnectorDB.connector();
-            String data_search =("SELECT name FROM users WHERE email = '" + email +"'");
-            ps = connector.prepareStatement(data_search);
-            result = ps.executeQuery();
-            if (result.next()){
-                String name = result.getString("name");
-                String surname = result.getString("surname");
-                search_name = (name + "" + surname);
-                
+            con = ConnectorDB.connector();
+            String check = "INSERT INTO equation_twov (x1, y1, r1, x2, y2, r2, x, y) VALUES (?,?,?,?,?,?,?,?)";
+            sentence = con.prepareStatement(check);
+            sentence.setString(1, x1);
+            sentence.setString(2, y1);
+            sentence.setString(3, r1);
+            sentence.setString(4, x2);
+            sentence.setString(5, y2);
+            sentence.setString(6, r2);
+            sentence.setString(7, x);
+            sentence.setString(8, y);
+
+            int i = sentence.executeUpdate();
+            if (i > 0) {
+                JOptionPane.showMessageDialog(null, "Equation saved");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error in to save equation");
             }
-            connector.close();
-        } catch (Exception e){
-            
-            System.out.println(e);
-            
+            con.close();
+        } catch (HeadlessException | SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error: " + e);
+
+            }
+
+        }
+    }
+    public void saveThree(String x1, String y1, String z1, String r1, String x2,
+            String y2,  String z2, String r2, String x3, String y3, String z3, 
+            String r3, String x, String y, String z) {
+
+        try {
+            con = ConnectorDB.connector();
+            String check = "INSERT INTO equation_threev (x1, y1, z1, r1, x2, y2, z2, r2, x3, y3, z3, r3, x, y, z) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            sentence = con.prepareStatement(check);
+            sentence.setString(1, x1);
+            sentence.setString(2, y1);
+            sentence.setString(3, z1);
+            sentence.setString(4, r1);
+            sentence.setString(5, x2);
+            sentence.setString(6, y2);
+            sentence.setString(7, z2);
+            sentence.setString(8, r2);
+            sentence.setString(9, x3);
+            sentence.setString(10, y3);
+            sentence.setString(11, z3);
+            sentence.setString(12, r3);
+            sentence.setString(13, x);
+            sentence.setString(14, y);
+            sentence.setString(15, z);
+
+            int i = sentence.executeUpdate();
+            if (i > 0) {
+                JOptionPane.showMessageDialog(null, "Equation saved");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error in to save equation");
+            }
+            con.close();
+        } catch (HeadlessException | SQLException e) {
+            System.out.println("Error: " + e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error: " + e);
+
+            }
+
+        }
+    }
+
+    //Login in the system using the database
+    public static String searchEmail(String email) {
+
+        String search_name = null;
+        
+        try {
+            con = ConnectorDB.connector();
+            String data_search = "SELECT email FROM users WHERE email = ? ";
+            sentence = con.prepareStatement(data_search);
+            sentence.setString(1, email);
+            result = sentence.executeQuery();
+            if (result.next()) {
+                search_name = "Exist email";
+            }else{
+                search_name = "Is not avaible in the system email";
+            }
+            con.close();
+        } catch (Exception e) {
+
+            System.out.println("Error: " + e);
+
+        } finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Methods_sql.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return search_name;
     }
     
-    public static String searchUserRegis (String email, String password){
-        String search_user =null;
-        Connection connector=null;
+    //ordenar estos parametro porque tengo que eliminar mi id
+    //mi id sera mi email ya que la declarare como mi nueva key
+    public void changeData(String name, String surname, String address, String phone, String password, String city, String email){
         try{
-            connector =ConnectorDB.connector();
-            String statement_search_user = ("SELECT name, email, password FROM users WHERE email = '" + email +"' && password = '" +password+"'");
-            ps = connector.prepareStatement(statement_search_user);
-            result = ps.executeQuery();
-            if (result.next()){
+            con =ConnectorDB.connector();
+            String search = "UPDATE users SET name = ?, surname = ?, address = ?, phone = ?, city = ?, password = ? WHERE email = ?";
+            sentence = con.prepareStatement(search);
+            sentence.setString(1, name);
+            sentence.setString(2, surname);
+            sentence.setString(3, phone);
+            sentence.setString(4, address);
+            sentence.setString(5, city);
+            sentence.setString(6, password);
+            sentence.setString(7, email);
+            
+            int i = sentence.executeUpdate();
+            if (i>0){
+                JOptionPane.showMessageDialog(null, "Data change");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data not change");
+            }
+            con.close();
+        } catch  (HeadlessException | SQLException e){
+            System.out.println("Error: " + e);
+        } finally{
+            try {
+                con.close();
+            } catch (Exception e){
+                System.out.println("Error: " + e);
+            }
+        }
+    }
+
+    public static String searchUserRegis(String email, String password) {
+        String search_user = null;
+        Connection connector = null;
+        try {
+            connector = ConnectorDB.connector();
+            String statement_search_user = ("SELECT email, password FROM users WHERE email = '" + email + "' && password = '" + password + "'");
+            sentence = connector.prepareStatement(statement_search_user);
+            result = sentence.executeQuery();
+            if (result.next()) {
                 search_user = "User founded";
-                
+
             } else {
                 search_user = "User dosen't founded";
             }
-            
+
             connector.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return search_user;
     }
     
-}
+    public void deleteUser(String email){
+        try{
+            con = ConnectorDB.connector();
+            String search_delete = "DELETE FROM users WHERE email = ?";
+            sentence = con.prepareStatement(search_delete);
+            sentence.setString(1, email);
+            int row_delete = sentence.executeUpdate();
+            if (row_delete > 0){
+                JOptionPane.showMessageDialog(null, "Succefull delete");
+            } else{
+                JOptionPane.showMessageDialog(null, "Unsuccefull delete");
+            }
+            con.close();
+        }catch(HeadlessException | SQLException e){
+            System.out.println("Error: " +e);
+            
+            
+        } finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Methods_sql.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Error: " + ex);
+            }
+        }
+    }
+    
  
+}

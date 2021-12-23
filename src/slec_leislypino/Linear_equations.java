@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package slec_leislypino;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +15,81 @@ public class Linear_equations extends javax.swing.JPanel {
         initComponents();
     }
 
+    private Double simplify(Double N){
+        return (Math.rint(N*100)/100);
+    }
+    public void resolveTwo(){
+        double x1,x2,y1,y2,r1,r2,x,y,det;
+        x1=Double.parseDouble(two_ax.getText());
+        x2=Double.parseDouble(two_bx.getText());
+        y1=Double.parseDouble(two_ay.getText());
+        y2=Double.parseDouble(two_by.getText());
+        r1=Double.parseDouble(two_aresult.getText());
+        r2=Double.parseDouble(two_bresult.getText());
+
+            det=(x1*y2)-(y1*x2);
+            x=(r1*y2-r2*y1)/det;
+            y= (x1*r2-x2*r1)/det;
+            lbl_xTwo.setText(+simplify(x)+"");
+            lbl_yTwo.setText(+simplify(y)+"");
+    }
+    public void resolveThree(){
+        double x1,x2,x3,y1,y2,y3,z1,z2,z3,r1,r2,r3,xa,xb,ya,dx,dy,yb,
+               za,zb,dz,deta,detb,detc,detg,detafinal,detbfinal,detcfinal;
+        
+            x1=Double.parseDouble(three_ax.getText());
+            x2=Double.parseDouble(three_bx.getText());
+            x3=Double.parseDouble(three_cx.getText());
+            y1=Double.parseDouble(three_ay.getText());
+            y2=Double.parseDouble(three_by.getText());
+            y3=Double.parseDouble(three_cy.getText());
+            z1=Double.parseDouble(three_az.getText());
+            z2=Double.parseDouble(three_bz.getText());
+            z3=Double.parseDouble(three_cz.getText());
+            r1=Double.parseDouble(three_aresult.getText());
+            r2=Double.parseDouble(three_bresult.getText());
+            r3=Double.parseDouble(three_cresult.getText());
+
+            deta=(x3*y2*z1)+(x1*y3*z2)+(x2*y1*z3);
+            detb= (x1*y2*z3)+(x2*y3*z1)+(x3*y1*z2);
+            detg= detb-deta;
+            xa=(r1*y2*z3+r2*y3*z1+r3*y1*z2);
+            xb=(r3*y2*z1+r1*y3*z2+r2*y1*z3);
+            deta=xa-xb;
+            detafinal=deta/detg;
+            ya= (x1*r2*z3+x2*r3*z1+x3*r1*z2);
+            yb=(x3*r2*z1+x1*r3*z2+x2*r1*z3);
+            detb=ya-yb;
+            detbfinal=detb/detg;
+            za= (x1*y2*r3+x2*y3*r1+x3*y1*r2);
+            zb= (x3*y2*r1+x1*y3*r2+x2*y1*r3);
+            detc=za-zb;
+            detcfinal=detc/detg;
+
+            lbl_xThree.setText(+simplify(detafinal)+"");
+            lbl_yThree.setText(+simplify(detbfinal)+"");
+            lbl_zThree.setText(+simplify(detcfinal)+"");
+    }
+    public void checkDataTwo(){
+        if (two_ax.getText().isEmpty() || two_ay.getText().isEmpty() || two_aresult.getText().isEmpty()
+            || two_bx.getText().isEmpty() || two_by.getText().isEmpty() || two_bresult.getText().isEmpty()){
+            
+            btn_solveTwoV.setEnabled(false);
+        } else{
+            btn_solveTwoV.setEnabled(true);
+        }
+    }
+    public void checkDataThree(){
+        if (three_ax.getText().isEmpty() || three_ay.getText().isEmpty() || three_az.getText().isEmpty() ||
+            three_aresult.getText().isEmpty() || three_bx.getText().isEmpty() || three_by.getText().isEmpty() ||
+            three_bz.getText().isEmpty() || three_bresult.getText().isEmpty() || three_cx.getText().isEmpty() ||
+            three_cy.getText().isEmpty() || three_cz.getText().isEmpty() || three_cresult.getText().isEmpty()){
+            
+            btn_solveThreeV.setEnabled(false);
+        } else {
+            btn_solveThreeV.setEnabled(true);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,186 +102,507 @@ public class Linear_equations extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        twoV = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        two_ax = new javax.swing.JTextField();
+        two_ay = new javax.swing.JTextField();
+        two_aresult = new javax.swing.JTextField();
+        two_bx = new javax.swing.JTextField();
+        two_by = new javax.swing.JTextField();
+        two_bresult = new javax.swing.JTextField();
+        btn_solveTwoV = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        lbl_xTwo = new javax.swing.JLabel();
+        lbl_yTwo = new javax.swing.JLabel();
+        threeV = new javax.swing.JPanel();
+        three_ax = new javax.swing.JTextField();
+        three_ay = new javax.swing.JTextField();
+        three_az = new javax.swing.JTextField();
+        three_aresult = new javax.swing.JTextField();
+        three_bx = new javax.swing.JTextField();
+        three_by = new javax.swing.JTextField();
+        three_bz = new javax.swing.JTextField();
+        three_bresult = new javax.swing.JTextField();
+        three_cx = new javax.swing.JTextField();
+        three_cy = new javax.swing.JTextField();
+        three_cz = new javax.swing.JTextField();
+        three_cresult = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txt_surname = new javax.swing.JTextField();
-        txt_email = new javax.swing.JTextField();
-        txt_name = new javax.swing.JTextField();
-        txt_id = new javax.swing.JTextField();
-        txt_phone = new javax.swing.JTextField();
-        txt_address = new javax.swing.JTextField();
-        txt_password = new javax.swing.JTextField();
-        cmb_city = new javax.swing.JComboBox<>();
-        btn_save = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        btn_solveThreeV = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        lbl_xThree = new javax.swing.JLabel();
+        lbl_yThree = new javax.swing.JLabel();
+        lbl_zThree = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 0, 153));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Data Modification");
+        jLabel1.setText("Systems of linear equations");
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        twoV.setBackground(new java.awt.Color(255, 255, 255));
+        twoV.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "System of two variables", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 16))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setText("ID:");
+        jLabel2.setText("X +");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("Name:");
+        jLabel3.setText("Y = ");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setText("Surname:");
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setText("Email:");
-
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel6.setText("Phone:");
+        jLabel4.setText("Y =");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel7.setText("Address:");
+        jLabel7.setText("X +");
+
+        two_ax.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        two_ax.setToolTipText("");
+        two_ax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                two_axKeyReleased(evt);
+            }
+        });
+
+        two_ay.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        two_ay.setToolTipText("");
+        two_ay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                two_ayKeyReleased(evt);
+            }
+        });
+
+        two_aresult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        two_aresult.setToolTipText("");
+        two_aresult.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                two_aresultKeyReleased(evt);
+            }
+        });
+
+        two_bx.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        two_bx.setToolTipText("");
+        two_bx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                two_bxKeyReleased(evt);
+            }
+        });
+
+        two_by.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        two_by.setToolTipText("");
+        two_by.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                two_byKeyReleased(evt);
+            }
+        });
+
+        two_bresult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        two_bresult.setToolTipText("");
+        two_bresult.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                two_bresultKeyReleased(evt);
+            }
+        });
+
+        btn_solveTwoV.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_solveTwoV.setText("SOLVE");
+        btn_solveTwoV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solveTwoVActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel15.setText("X");
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel16.setText("Y");
+
+        lbl_xTwo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_xTwo.setText("-");
+
+        lbl_yTwo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_yTwo.setText("-");
+
+        javax.swing.GroupLayout twoVLayout = new javax.swing.GroupLayout(twoV);
+        twoV.setLayout(twoVLayout);
+        twoVLayout.setHorizontalGroup(
+            twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(twoVLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(twoVLayout.createSequentialGroup()
+                        .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(two_ax, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(two_bx, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbl_xTwo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(twoVLayout.createSequentialGroup()
+                        .addComponent(two_ay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(twoVLayout.createSequentialGroup()
+                            .addComponent(two_by, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel4))
+                        .addComponent(lbl_yTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(two_bresult, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(twoVLayout.createSequentialGroup()
+                        .addComponent(two_aresult, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_solveTwoV)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        twoVLayout.setVerticalGroup(
+            twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(twoVLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(two_ax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(two_ay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(two_aresult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_solveTwoV))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(two_bx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(two_by, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(two_bresult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel15))
+                .addGap(18, 18, 18)
+                .addGroup(twoVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_xTwo)
+                    .addComponent(lbl_yTwo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        threeV.setBackground(new java.awt.Color(255, 255, 255));
+        threeV.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "System of three variables", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 16))); // NOI18N
+
+        three_ax.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_ax.setToolTipText("");
+        three_ax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_axKeyReleased(evt);
+            }
+        });
+
+        three_ay.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_ay.setToolTipText("");
+        three_ay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_ayKeyReleased(evt);
+            }
+        });
+
+        three_az.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_az.setToolTipText("");
+        three_az.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_azKeyReleased(evt);
+            }
+        });
+
+        three_aresult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_aresult.setToolTipText("");
+        three_aresult.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_aresultKeyReleased(evt);
+            }
+        });
+
+        three_bx.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_bx.setToolTipText("");
+        three_bx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_bxKeyReleased(evt);
+            }
+        });
+
+        three_by.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_by.setToolTipText("");
+        three_by.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_byKeyReleased(evt);
+            }
+        });
+
+        three_bz.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_bz.setToolTipText("");
+        three_bz.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_bzKeyReleased(evt);
+            }
+        });
+
+        three_bresult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_bresult.setToolTipText("");
+        three_bresult.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_bresultKeyReleased(evt);
+            }
+        });
+
+        three_cx.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_cx.setToolTipText("");
+        three_cx.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_cxKeyReleased(evt);
+            }
+        });
+
+        three_cy.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_cy.setToolTipText("");
+        three_cy.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_cyKeyReleased(evt);
+            }
+        });
+
+        three_cz.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_cz.setToolTipText("");
+        three_cz.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_czKeyReleased(evt);
+            }
+        });
+
+        three_cresult.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        three_cresult.setToolTipText("");
+        three_cresult.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                three_cresultKeyReleased(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setText("X +");
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel8.setText("City:");
+        jLabel8.setText("X +");
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel6.setText("Y +");
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel9.setText("Password:");
+        jLabel9.setText("Y + ");
 
-        txt_surname.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_surname.setToolTipText("");
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setText("X +");
 
-        txt_email.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_email.setToolTipText("");
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel11.setText("Y +");
 
-        txt_name.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_name.setToolTipText("");
+        btn_solveThreeV.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_solveThreeV.setText("SOLVE");
+        btn_solveThreeV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solveThreeVActionPerformed(evt);
+            }
+        });
 
-        txt_id.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_id.setToolTipText("");
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel12.setText("Z = ");
 
-        txt_phone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_phone.setToolTipText("");
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel13.setText("Z =");
 
-        txt_address.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_address.setToolTipText("");
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel14.setText("Z =");
 
-        txt_password.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        txt_password.setToolTipText("");
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel17.setText("X");
 
-        cmb_city.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cmb_city.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel18.setText("Y");
 
-        btn_save.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_save.setText("SAVE");
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel19.setText("Z");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_save)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(28, 28, 28)
-                            .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(44, 44, 44)
-                            .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel8))
-                            .addGap(35, 35, 35)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmb_city, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(1, 1, 1))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        lbl_xThree.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_xThree.setText("-");
+
+        lbl_yThree.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_yThree.setText("-");
+
+        lbl_zThree.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbl_zThree.setText("-");
+
+        javax.swing.GroupLayout threeVLayout = new javax.swing.GroupLayout(threeV);
+        threeV.setLayout(threeVLayout);
+        threeVLayout.setHorizontalGroup(
+            threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(threeVLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txt_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txt_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8)
-                    .addComponent(txt_surname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(threeVLayout.createSequentialGroup()
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(three_ax, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(three_bx, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addComponent(three_ay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel9))
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addComponent(three_by, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(three_az, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(three_bz, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(threeVLayout.createSequentialGroup()
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addComponent(three_cx, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(three_cy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_xThree, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(three_cz, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_yThree, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(5, 5, 5)
+                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(threeVLayout.createSequentialGroup()
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel12))
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(three_bresult, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(three_aresult, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_solveThreeV))))
+                    .addGroup(threeVLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(threeVLayout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(three_cresult, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbl_zThree, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(311, Short.MAX_VALUE))
+        );
+        threeVLayout.setVerticalGroup(
+            threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(threeVLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(three_ax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
+                    .addComponent(three_ay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(btn_save)
-                .addGap(21, 21, 21))
+                    .addComponent(three_az, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_solveThreeV)
+                    .addComponent(jLabel12)
+                    .addComponent(three_aresult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(three_bx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(three_by, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(three_bz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel13)
+                    .addComponent(three_bresult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(three_cx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(three_cy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(three_cz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel14)
+                    .addComponent(three_cresult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(threeVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_xThree)
+                    .addComponent(lbl_yThree)
+                    .addComponent(lbl_zThree))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(threeV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(twoV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(255, Short.MAX_VALUE)))
+                    .addContainerGap(393, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(twoV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(threeV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -221,7 +614,9 @@ public class Linear_equations extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,29 +627,189 @@ public class Linear_equations extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void two_axKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_two_axKeyReleased
+        if (!two_ax.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            two_ax.setText("");
+        }
+        checkDataTwo();
+    }//GEN-LAST:event_two_axKeyReleased
+
+    private void two_ayKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_two_ayKeyReleased
+        if (!two_ay.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            two_ay.setText("");
+        }
+        checkDataTwo();
+    }//GEN-LAST:event_two_ayKeyReleased
+
+    private void two_aresultKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_two_aresultKeyReleased
+        if (!two_aresult.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            two_aresult.setText("");
+        }
+        checkDataTwo();
+    }//GEN-LAST:event_two_aresultKeyReleased
+
+    private void two_bxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_two_bxKeyReleased
+        if (!two_bx.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            two_bx.setText("");
+        }
+        checkDataTwo();
+    }//GEN-LAST:event_two_bxKeyReleased
+
+    private void two_byKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_two_byKeyReleased
+        if (!two_by.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            two_by.setText("");
+        }
+        checkDataTwo();
+    }//GEN-LAST:event_two_byKeyReleased
+
+    private void two_bresultKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_two_bresultKeyReleased
+        if (!two_bresult.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            two_bresult.setText("");
+        }
+        checkDataTwo();
+    }//GEN-LAST:event_two_bresultKeyReleased
+
+    private void three_axKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_axKeyReleased
+        if (!three_ax.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_ax.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_axKeyReleased
+
+    private void three_ayKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_ayKeyReleased
+        if (!three_ay.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_ay.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_ayKeyReleased
+
+    private void three_azKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_azKeyReleased
+        if (!three_az.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_az.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_azKeyReleased
+
+    private void three_aresultKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_aresultKeyReleased
+        if (!three_aresult.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_aresult.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_aresultKeyReleased
+
+    private void three_bxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_bxKeyReleased
+        if (!three_bx.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_bx.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_bxKeyReleased
+
+    private void three_byKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_byKeyReleased
+        if (!three_by.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_by.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_byKeyReleased
+
+    private void three_bzKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_bzKeyReleased
+        if (!three_bz.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_bz.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_bzKeyReleased
+
+    private void three_bresultKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_bresultKeyReleased
+        if (!three_bresult.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_bresult.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_bresultKeyReleased
+
+    private void three_cxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_cxKeyReleased
+        if (!three_cx.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_cx.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_cxKeyReleased
+
+    private void three_cyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_cyKeyReleased
+        if (!three_cy.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_cy.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_cyKeyReleased
+
+    private void three_czKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_czKeyReleased
+        if (!three_cz.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_cz.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_czKeyReleased
+
+    private void three_cresultKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_three_cresultKeyReleased
+        if (!three_cresult.getText().matches("[0-9-]*")){
+            JOptionPane.showMessageDialog(null,"Just type numers");
+            three_cresult.setText("");
+        }
+        checkDataThree();
+    }//GEN-LAST:event_three_cresultKeyReleased
+
+    private void btn_solveTwoVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solveTwoVActionPerformed
+        
+        resolveTwo();
+        
+    }//GEN-LAST:event_btn_solveTwoVActionPerformed
+
+    private void btn_solveThreeVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solveThreeVActionPerformed
+        resolveThree();
+    }//GEN-LAST:event_btn_solveThreeVActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_save;
-    private javax.swing.JComboBox<String> cmb_city;
+    private javax.swing.JButton btn_solveThreeV;
+    private javax.swing.JButton btn_solveTwoV;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -265,13 +820,30 @@ public class Linear_equations extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txt_address;
-    private javax.swing.JTextField txt_email;
-    private javax.swing.JTextField txt_id;
-    private javax.swing.JTextField txt_name;
-    private javax.swing.JTextField txt_password;
-    private javax.swing.JTextField txt_phone;
-    private javax.swing.JTextField txt_surname;
+    private javax.swing.JLabel lbl_xThree;
+    private javax.swing.JLabel lbl_xTwo;
+    private javax.swing.JLabel lbl_yThree;
+    private javax.swing.JLabel lbl_yTwo;
+    private javax.swing.JLabel lbl_zThree;
+    private javax.swing.JPanel threeV;
+    private javax.swing.JTextField three_aresult;
+    private javax.swing.JTextField three_ax;
+    private javax.swing.JTextField three_ay;
+    private javax.swing.JTextField three_az;
+    private javax.swing.JTextField three_bresult;
+    private javax.swing.JTextField three_bx;
+    private javax.swing.JTextField three_by;
+    private javax.swing.JTextField three_bz;
+    private javax.swing.JTextField three_cresult;
+    private javax.swing.JTextField three_cx;
+    private javax.swing.JTextField three_cy;
+    private javax.swing.JTextField three_cz;
+    private javax.swing.JPanel twoV;
+    private javax.swing.JTextField two_aresult;
+    private javax.swing.JTextField two_ax;
+    private javax.swing.JTextField two_ay;
+    private javax.swing.JTextField two_bresult;
+    private javax.swing.JTextField two_bx;
+    private javax.swing.JTextField two_by;
     // End of variables declaration//GEN-END:variables
 }

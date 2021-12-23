@@ -128,17 +128,20 @@ public class Form_login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String search_user = methods.searchUserRegis(txt_email.getText(), txt_password.getText());
         if (txt_email.getText().equals("CCT") && txt_password.getText().equals("Dublin")){
-            JOptionPane.showMessageDialog(this, "Welcome Admin");
             Form_admin window = new Form_admin();
-            window.setVisible(true);
-            this.dispose(); //Close this Form
+            //JOptionPane.showMessageDialog(window, "Welcome Admin");
             
-        } else if (search_user.equals("User on the system")){
-            String search_name = methods.searchName(txt_email.getText());
-            JOptionPane.showMessageDialog(this, "Welcome \n" + search_name);
-            Form_user window = new Form_user();
             window.setVisible(true);
-            window.label2.setText(search_name);
+            //this.dispose(); //Close this Form
+            
+        } else if (search_user.equals("User founded")){
+            JOptionPane.showMessageDialog(null, "Welcome \n");
+            Form_user window = new Form_user();
+            //String search_name = methods.searchEmail(txt_email.getText());
+            //int option; 
+            
+            
+            window.setVisible(true);
             this.dispose(); //Close this Form
         }else{
             JOptionPane.showMessageDialog(this, "User doesn't exits");
